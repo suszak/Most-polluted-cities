@@ -1,0 +1,58 @@
+$light: rgb(243, 240, 235);
+$green: rgb(27, 177, 109);
+$blue: rgb(24, 122, 155);
+$purple: rgba(82, 81, 116, 1);
+$darkpurple: rgba(81, 59, 86, 1);
+@import url('https://fonts.googleapis.com/css?family=PT+Sans&display=swap');
+
+:root {
+    font-size: 10px;
+    font-family: 'PT Sans', sans-serif;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+body {
+    width: 100vw;
+    background-color: $light;
+}
+
+.title {
+    height: 100vh;
+    position: relative;
+
+    &__text {
+        font-size: 5rem;
+        margin-top: 25px;
+        margin-left: 25px;
+        color: $green;
+    }
+
+    &__img {
+        position: absolute;
+        bottom: 0;
+        right: -50%;
+    }
+
+    &__arrow {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        width: 50px;
+        height: 50px;
+        bottom: 2%;
+        left: 50%;
+        border: 2px solid $purple;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2.5rem;
+        color: $purple;
+    }
+}
