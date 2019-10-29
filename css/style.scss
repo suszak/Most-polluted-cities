@@ -14,31 +14,32 @@ $darkpurple: rgba(81, 59, 86, 1);
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
 }
 
 body {
     width: 100vw;
     background-color: $light;
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 
 // header section - title
 .title {
-    height: 100vh;
+    height: 105vh;
     position: relative;
+    overflow-x: hidden;
 
     &__text {
         font-size: 5rem;
-        margin-top: 25px;
+        margin-top: 45px;
         margin-left: 25px;
         color: $green;
     }
 
     &__img {
         position: absolute;
-        bottom: 0;
+        bottom: 20px;
         right: -50%;
     }
 
@@ -49,7 +50,7 @@ body {
         z-index: 1;
         width: 50px;
         height: 50px;
-        bottom: 2%;
+        bottom: 5%;
         left: 50%;
 
         border: 2px solid $darkpurple;
@@ -66,6 +67,7 @@ body {
 
 // nav section - input
 .navigation {
+    overflow-x: hidden;
     height: 100vh;
     position: relative;
     display: flex;
@@ -95,7 +97,7 @@ body {
         font-size: 2.5rem;
         color: rgba(180,180,180,1);
         font-weight: bold;
-        transition: 1s ease-in-out;
+        transition: .5s ease-in-out;
 
         &--active {
             color: $green;
@@ -119,6 +121,69 @@ body {
 
         &--active {
             border-color: $green;
+        }
+    }
+
+    &__verify {
+        position: absolute;
+        top: 50%;
+        left: 85%;
+        transform: translate(-50%, -50%);
+
+        height: 30px;
+        width: 30px;
+        border: 1px solid $darkpurple;
+        border-radius: 50%;
+
+        .line {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50%;
+            transition: .5s;
+        
+            &::before {
+                position: absolute;
+                width: 100%;
+                content: '';
+                transform: rotate(-45deg);
+                border-bottom: 2px solid red;
+                transition: 0.5s;
+            }
+        
+            &::after {
+                position: absolute;
+                width: 100%;
+                content: '';
+                border-bottom: 2px solid red;
+                transform: rotate(45deg);
+                transition: 0.5s;
+            }
+        }
+
+        &--checked {
+            .line {
+                height: 50%;
+                border-bottom: 2px solid $green;
+                border-left: 2px solid $green;
+                border-radius: 80%;
+                transform: translate(-50%, -50%) Rotate(-45deg);
+
+                &::before {
+                    display: none;
+                    // width: 5%;
+                    // border-color: $green;
+                    // transform: rotate(-90deg);
+                }
+
+                &::after {
+                    display: none;
+                    // width: 5%;
+                    // border-color: $green;
+                    // transform:  rotate(90deg);
+                }
+            }
         }
     }
 }
