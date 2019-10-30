@@ -17,9 +17,11 @@ body {
   overflow-x: hidden;
 }
 
-.title {
+.section {
   height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
+  min-height: 500px;
+  min-width: 336px;
   position: relative;
   overflow-x: hidden;
 }
@@ -29,12 +31,15 @@ body {
   margin-top: 45px;
   margin-left: 25px;
   color: #1bb16d;
+  text-shadow: 0 0 5px #513b56, 0 0 10px #f3f0eb;
+  z-index: 10;
 }
 
 .title__img {
   position: absolute;
   bottom: 0;
   right: -50%;
+  z-index: -1;
 }
 
 .title__arrow {
@@ -56,10 +61,6 @@ body {
 }
 
 .navigation {
-  overflow-x: hidden;
-  height: 100vh;
-  height: calc(var(--vh, 1vh) * 100);
-  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;

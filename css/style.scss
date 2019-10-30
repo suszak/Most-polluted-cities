@@ -24,25 +24,32 @@ body {
     overflow-x: hidden;
 }
 
+.section {
+    height: 100vh;
+    height: $fullscreen;
+    min-height: 500px;
+    min-width: 336px;
+    position: relative;
+    overflow-x: hidden;
+}
 
 // header section - title
 .title {
-    height: 100vh;
-    height: $fullscreen;
-    position: relative;
-    overflow-x: hidden;
 
     &__text {
         font-size: 5rem;
         margin-top: 45px;
         margin-left: 25px;
         color: $green;
+        text-shadow: 0 0 5px $darkpurple, 0 0 10px $light;
+        z-index: 10;
     }
 
     &__img {
         position: absolute;
         bottom: 0;
         right: -50%;
+        z-index: -1;
     }
 
     &__arrow {
@@ -69,10 +76,6 @@ body {
 
 // nav section - input
 .navigation {
-    overflow-x: hidden;
-    height: 100vh;
-    height: $fullscreen;
-    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
