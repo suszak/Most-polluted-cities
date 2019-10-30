@@ -11,22 +11,23 @@
         <script type="text/javascript"> (function() { var css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.1.0/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
 
         
-        <header class="title section">
+        <header class="title">
             <h1 class="title__text">The most polluted cities</h1>
             <img class="title__img" src="images/tree.png">
             <span class="title__arrow">
-                <i class="fas fa-chevron-down"></i>
+                <i class="fas fa-chevron-down" id="goNav"></i>
             </span>
             
         </header>
 
-        <nav class="navigation section" id="navigation">
+        <nav class="navigation" id="navigation">
             <h2 class="navigation__header">Choose your country:</h2>
             <span class="choice">
                 <label class="choice__label" for="country">Country</label>
                 <input class="choice__input" id="country" type="text">
-                <span class="choice__verify choice__verify--checked">
-                    <span class="line"></span>
+                <span class="choice__verify">    
+                    <i id="verifier" class="fas fa-times"></i>
+                    <!-- <i class="fas fa-check"></i> -->
                 </span>
             </span>
         </nav>
