@@ -1,4 +1,4 @@
-var inputFlag = 0;
+let inputFlag = 0;
 
 let vh = window.innerHeight * 0.01;
 document.documentElement.style.setProperty('--vh', `${vh}px`);
