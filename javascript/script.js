@@ -4,7 +4,7 @@ let vh = window.innerHeight * 0.01;
 document.documentElement.style.setProperty('--vh', `${vh}px`);
 
 // array with countries:
-const countriesArray = ["POLAND", "GERMANY", "SPAIN", "FRANCE"];
+const countriesArray = ["Poland", "Germany", "Spain", "France"];
 
 window.addEventListener('DOMContentLoaded', () => {
     
@@ -28,7 +28,7 @@ window.addEventListener('DOMContentLoaded', () => {
     // nav: verifier change:
     document.querySelector("#country").addEventListener("keyup", (e) => {
         
-            if (countriesArray.indexOf(document.querySelector("#country").value.toUpperCase()) !== -1) {
+            if (countriesArray.indexOf(document.querySelector("#country").value) !== -1) {
                 document.querySelector("#verifier").classList.remove("fa-times");
                 document.querySelector("#verifier").classList.add("fa-check");
             } else {
@@ -46,6 +46,14 @@ window.addEventListener('DOMContentLoaded', () => {
             document.querySelector(".choice__input").classList.remove("choice__input--active");
             inputFlag = 0; 
         }
+    });
+
+    // create datalist with countries:
+    countriesArray.forEach(element => {
+        const option = document.createElement('option');
+        option.innerText = element;
+
+        document.querySelector("#countryList").append(option);
     });
 
 });
