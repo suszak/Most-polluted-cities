@@ -107,6 +107,7 @@ body {
 }
 
 .choice__input {
+  color: #513b56;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -184,23 +185,50 @@ body {
   align-items: center;
 }
 
-.cities__city {
-  height: 300px;
-  width: 80%;
+.city {
+  background-color: rgba(156, 155, 150, 0.151);
+  height: auto;
+  width: 90%;
   color: #1bb16d;
-  border: 1px solid #513b56;
+  border-radius: 20px;
   position: relative;
   margin-bottom: 30px;
+  display: grid;
+  grid-template-columns: auto 50px;
 }
 
-.cities__city .header {
-  padding-left: 15px;
-  width: 100%;
+.city__header {
+  margin: 15px 0;
+  grid-column: 1;
+  grid-row: 1;
   text-align: left;
-  position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   font-size: 2rem;
   font-weight: bold;
+  justify-self: center;
+  align-self: center;
+}
+
+.city__button {
+  margin: 15px 0;
+  grid-column: 2;
+  grid-row: 1;
+  height: 30px;
+  width: 30px;
+  background: transparent;
+  border-radius: 50%;
+  border: 2px solid #513b56;
+  font-size: 2rem;
+  color: #513b56;
+  font-weight: bold;
+  justify-self: center;
+  align-self: center;
+}
+
+.city__information {
+  margin: 15px;
+  margin-top: 30px;
+  grid-column: 1/3;
+  grid-row: 2;
+  font-size: 1.7rem;
+  text-align: justify;
 }

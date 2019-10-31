@@ -68,6 +68,8 @@ window.addEventListener('DOMContentLoaded', () => {
   document.querySelector(".choice__button").addEventListener("click", () => {
     // get data from openaq API:
     getPollutedCities();
+    document.querySelector(".choice__button").innerText = "Loading...";
+    document.querySelector(".choice__button").disabled = true;
   });
 
   // create datalist with countries:
@@ -80,7 +82,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
 });
 
+// functions:
 
+// Set country shortcut
 function getPollutedCities() {
   switch (document.querySelector("#country").value) {
     case "Poland":
@@ -97,12 +101,12 @@ function getPollutedCities() {
       break;
   }
 
-  limit = 50;
+  limit = 25;
 
-  getDataFromOpenaq()
-    
+  getDataFromOpenaq();
 }
 
+// Get 10 distinct cities from API
 function getDataFromOpenaq() {
   pollutedCitiesDistinct = [];
   request = new XMLHttpRequest();
@@ -117,7 +121,7 @@ function getDataFromOpenaq() {
 
     if (pollutedCitiesDistinct.length < 10)
     { 
-      console.log("Once more");
+      // console.log("Once more");
       getDataFromOpenaq();
     } else {
       createMainSection(pollutedCitiesDistinct);
@@ -125,6 +129,7 @@ function getDataFromOpenaq() {
   });
 }
 
+// Get data from OpenAQ API 
 async function getData(country, limit) 
 {
   let response = await fetch(`https://api.openaq.org/v1/measurements?country=${country}&parameter=pm25&date_from=2019-07-01&order_by=value&sort=desc&limit=${limit}`);
@@ -132,7 +137,7 @@ async function getData(country, limit)
   return data;
 }
 
-
+// Create section with 10 most polluted cities in country
 function createMainSection(array) {
   if (document.querySelector(".cities") !== null) {
     document.querySelector(".cities").remove();
@@ -145,13 +150,29 @@ function createMainSection(array) {
   for (let index = 0; index < 10; index++) {
     const city = document.createElement('span');
     const header = document.createElement('h3');
-    city.classList.add("cities__city");
+    // const text = document.createElement('p');
+    const button = document.createElement('button');
+
+    city.classList.add("city");
+
+    header.classList.add("city__header");
     header.innerText = index+1 + ". "+array[index];
-    header.classList.add("header");
+
+    // text.classList.add("city__information");
+    // text.innerText = "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id eius, ipsam repellat velit recusandae eaque aliquid autem deleniti voluptates deserunt officia vero exercitationem nostrum, voluptate voluptatibus pariatur nisi quis error.";
+
+    button.classList.add("city__button");
+    button.innerText = "i";
 
     city.appendChild(header);
+    city.appendChild(button);
+    // city.appendChild(text);
     main.appendChild(city);
   };
 
   document.querySelector("body").append(main);
+
+  document.querySelector("#cities").scrollIntoView();
+  document.querySelector(".choice__button").innerText = "Show cities";
+  document.querySelector(".choice__button").disabled = false;
 }
