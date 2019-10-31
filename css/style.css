@@ -149,3 +149,58 @@ body {
 .choice__verify .fa-check {
   color: green;
 }
+
+.choice__button {
+  position: absolute;
+  left: 50%;
+  top: 80%;
+  transform: translate(-50%, -50%);
+  width: 30%;
+  height: 30px;
+  border-radius: 10px;
+  border: 1px solid #513b56;
+  background: transparent;
+  color: #513b56;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.choice .disabled {
+  color: grey;
+  font-weight: normal;
+  border-color: grey;
+}
+
+.cities {
+  width: 100%;
+  height: auto;
+  min-width: 336px;
+  position: relative;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cities__city {
+  height: 300px;
+  width: 80%;
+  color: #1bb16d;
+  border: 1px solid #513b56;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.cities__city .header {
+  padding-left: 15px;
+  width: 100%;
+  text-align: left;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  font-weight: bold;
+}
