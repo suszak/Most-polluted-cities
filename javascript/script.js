@@ -148,30 +148,10 @@ function createMainSection(array) {
   main.id = "cities";
 
   for (let index = 0; index < 10; index++) {
-    const city = document.createElement('span');
-    const header = document.createElement('h3');
-    const text = document.createElement('p');
-    const button = document.createElement('button');
 
-    city.classList.add("city");
-
-    header.classList.add("city__header");
-    header.innerText = index+1 + ". "+array[index];
-
-    text.classList.add("city__information");
-    text.classList.add("city__information--hidden");
-    text.innerText = "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id eius, ipsam repellat velit recusandae eaque aliquid autem deleniti voluptates deserunt officia vero exercitationem nostrum, voluptate voluptatibus pariatur nisi quis error.";
-
-
-    button.classList.add("city__button");
-    button.innerText = "i";
-
-    city.appendChild(header);
-    city.appendChild(button);
-    city.appendChild(text);
-    main.appendChild(city);
-
-    button.addEventListener("click", (e) => showInfo(e));
+    // Get data from Wikipedia API:
+    getDataFromWiki(array[index], index, main);
+    // text.innerText = "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id eius, ipsam repellat velit recusandae eaque aliquid autem deleniti voluptates deserunt officia vero exercitationem nostrum, voluptate voluptatibus pariatur nisi quis error.";
   };
 
   document.querySelector("body").append(main);
@@ -185,4 +165,60 @@ function showInfo(e) {
   const city = e.target.closest(".city");
   const text = city.querySelector(".city__information");
   text.classList.toggle("city__information--hidden");
+}
+
+
+function getDataFromWiki(cityName, index, main) {
+  let url = "https://en.wikipedia.org/w/api.php";
+
+  let params = {
+    action: "opensearch",
+    search: cityName,
+    limit: "1",
+    namespace: "0",
+    format: "json"
+  };
+
+  url = url + "?origin=*";
+  Object.keys(params).forEach(function(key){url += "&" + key + "=" + params[key];});
+
+  fetch(url)
+    .then(function(response){return response.json();})
+    .then(function(response) {
+      const info = document.createElement('p');
+      const link = document.createElement('p');
+      const text = document.createElement('span');
+      const city = document.createElement('span');
+      const header = document.createElement('h3');
+      const button = document.createElement('button');
+
+      city.classList.add("city");
+
+      header.classList.add("city__header");
+      header.innerText = index + 1 + ". " + cityName;
+
+      info.classList.add("info");
+      link.classList.add("link");
+      text.classList.add("city__information");
+      text.classList.add("city__information--hidden");
+      button.classList.add("city__button");
+
+      button.innerText = "i";
+      
+      info.innerText = response[2][0];
+      link.innerText = response[3][0];
+
+      text.appendChild(info);
+      text.appendChild(link);
+      
+      
+
+      city.appendChild(header);
+      city.appendChild(button);
+      city.appendChild(text);
+      main.appendChild(city);
+
+      button.addEventListener("click", (e) => showInfo(e));
+    })
+    .catch(function(error){console.log(error);});
 }

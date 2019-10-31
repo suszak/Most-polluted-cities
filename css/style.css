@@ -231,6 +231,7 @@ body {
   grid-row: 2;
   font-size: 1.7rem;
   text-align: justify;
+  color: #513b56;
 }
 
 .city__information--hidden {
