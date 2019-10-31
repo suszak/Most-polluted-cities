@@ -247,5 +247,9 @@ body {
         grid-row: 2;
         font-size: 1.7rem;
         text-align: justify;
+
+        &--hidden {
+            display: none;
+        }
     }
 }

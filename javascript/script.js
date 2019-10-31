@@ -150,7 +150,7 @@ function createMainSection(array) {
   for (let index = 0; index < 10; index++) {
     const city = document.createElement('span');
     const header = document.createElement('h3');
-    // const text = document.createElement('p');
+    const text = document.createElement('p');
     const button = document.createElement('button');
 
     city.classList.add("city");
@@ -158,16 +158,20 @@ function createMainSection(array) {
     header.classList.add("city__header");
     header.innerText = index+1 + ". "+array[index];
 
-    // text.classList.add("city__information");
-    // text.innerText = "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id eius, ipsam repellat velit recusandae eaque aliquid autem deleniti voluptates deserunt officia vero exercitationem nostrum, voluptate voluptatibus pariatur nisi quis error.";
+    text.classList.add("city__information");
+    text.classList.add("city__information--hidden");
+    text.innerText = "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id eius, ipsam repellat velit recusandae eaque aliquid autem deleniti voluptates deserunt officia vero exercitationem nostrum, voluptate voluptatibus pariatur nisi quis error.";
+
 
     button.classList.add("city__button");
     button.innerText = "i";
 
     city.appendChild(header);
     city.appendChild(button);
-    // city.appendChild(text);
+    city.appendChild(text);
     main.appendChild(city);
+
+    button.addEventListener("click", (e) => showInfo(e));
   };
 
   document.querySelector("body").append(main);
@@ -175,4 +179,10 @@ function createMainSection(array) {
   document.querySelector("#cities").scrollIntoView();
   document.querySelector(".choice__button").innerText = "Show cities";
   document.querySelector(".choice__button").disabled = false;
+}
+
+function showInfo(e) {
+  const city = e.target.closest(".city");
+  const text = city.querySelector(".city__information");
+  text.classList.toggle("city__information--hidden");
 }

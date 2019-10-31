@@ -232,3 +232,7 @@ body {
   font-size: 1.7rem;
   text-align: justify;
 }
+
+.city__information--hidden {
+  display: none;
+}
