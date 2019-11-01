@@ -16,7 +16,6 @@ let pollutedCitiesDistinct = [];
 
 
 window.addEventListener('DOMContentLoaded', () => {
-
   // header section events:
   document.querySelector("#goNav").addEventListener("click", () => {
     document.querySelector("#navigation").scrollIntoView();
@@ -26,6 +25,22 @@ window.addEventListener('DOMContentLoaded', () => {
   // Set button disabled:
   document.querySelector(".choice__button").disabled = true;
   document.querySelector(".choice__button").classList.add("disabled");
+
+  // Set country value:
+  if (getCookie("country") !== null) {
+    document.querySelector("#country").value = getCookie("country");
+    if (inputFlag === 0) {
+      document.querySelector(".choice__label").classList.add("choice__label--active");
+      document.querySelector(".choice__input").classList.add("choice__input--active");
+      inputFlag = 1;
+      // console.log("active");
+
+      document.querySelector("#verifier").classList.remove("fa-times");
+      document.querySelector("#verifier").classList.add("fa-check");
+      document.querySelector(".choice__button").disabled = false;
+      document.querySelector(".choice__button").classList.remove("disabled");
+    }
+  }
 
   // nav: input enabling:
   document.querySelector("#country").addEventListener("click", (e) => {
@@ -70,6 +85,7 @@ window.addEventListener('DOMContentLoaded', () => {
     getPollutedCities();
     document.querySelector(".choice__button").innerText = "Loading...";
     document.querySelector(".choice__button").disabled = true;
+    createCookie(document.querySelector("#country").value);
   });
 
   // create datalist with countries:
@@ -147,11 +163,45 @@ function createMainSection(array) {
   main.classList.add("cities");
   main.id = "cities";
 
-  for (let index = 0; index < 10; index++) {
+  
 
+  for (let index = 0; index < 10; index++) {
+    const info = document.createElement('p');
+      const link = document.createElement('p');
+      const text = document.createElement('span');
+      const city = document.createElement('span');
+      const header = document.createElement('h3');
+      const button = document.createElement('button');
+
+      city.classList.add("city");
+
+      header.classList.add("city__header");
+      header.innerText = index + 1 + ". " + array[index];
+
+      info.classList.add("info");
+      link.classList.add("link");
+      text.classList.add("city__information");
+      text.classList.add("city__information--hidden");
+      button.classList.add("city__button");
+
+      button.innerText = "i";
+      
+      info.innerText = "Lorem ipsum";
+      link.innerText =  "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id eius, ipsam repellat velit recusandae eaque aliquid autem deleniti voluptates deserunt officia vero exercitationem nostrum, voluptate voluptatibus pariatur nisi quis error.";
+
+      text.appendChild(info);
+      text.appendChild(link);
+      
+      
+
+      city.appendChild(header);
+      city.appendChild(button);
+      city.appendChild(text);
+      main.appendChild(city);
+
+      button.addEventListener("click", (e) => showInfo(e));
     // Get data from Wikipedia API:
-    getDataFromWiki(array[index], index, main);
-    // text.innerText = "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id eius, ipsam repellat velit recusandae eaque aliquid autem deleniti voluptates deserunt officia vero exercitationem nostrum, voluptate voluptatibus pariatur nisi quis error.";
+    // getDataFromWiki(array[index], index, main);
   };
 
   document.querySelector("body").append(main);
@@ -168,7 +218,7 @@ function showInfo(e) {
 }
 
 
-function getDataFromWiki(cityName, index, main) {
+async function getDataFromWiki(cityName, index, main) {
   let url = "https://en.wikipedia.org/w/api.php";
 
   let params = {
@@ -185,40 +235,34 @@ function getDataFromWiki(cityName, index, main) {
   fetch(url)
     .then(function(response){return response.json();})
     .then(function(response) {
-      const info = document.createElement('p');
-      const link = document.createElement('p');
-      const text = document.createElement('span');
-      const city = document.createElement('span');
-      const header = document.createElement('h3');
-      const button = document.createElement('button');
-
-      city.classList.add("city");
-
-      header.classList.add("city__header");
-      header.innerText = index + 1 + ". " + cityName;
-
-      info.classList.add("info");
-      link.classList.add("link");
-      text.classList.add("city__information");
-      text.classList.add("city__information--hidden");
-      button.classList.add("city__button");
-
-      button.innerText = "i";
-      
-      info.innerText = response[2][0];
-      link.innerText = response[3][0];
-
-      text.appendChild(info);
-      text.appendChild(link);
-      
-      
-
-      city.appendChild(header);
-      city.appendChild(button);
-      city.appendChild(text);
-      main.appendChild(city);
-
-      button.addEventListener("click", (e) => showInfo(e));
+      console.log(response[1][0]);
     })
     .catch(function(error){console.log(error);});
+}
+
+
+// create cookie (remember input value):
+function createCookie(countryName) {
+  if (navigator.cookieEnabled) {
+    let data = new Date();
+    data.setTime(data.getTime() + (24*60*60*1000));
+    let cookieValue = encodeURIComponent("country") + "=" + encodeURIComponent(countryName) + ";expires=" + data.toGMTString();
+
+    document.cookie = cookieValue;
+  }
+}
+
+// get cookie value:
+function getCookie(name) {
+  if (document.cookie !== "") {
+    const cookies = document.cookie.split(/; */);
+
+    for (let i=0; i<cookies.length; i++) {
+      const cookieName = cookies[i].split("=")[0];
+      const cookieVal = cookies[i].split("=")[1];
+      if (cookieName === decodeURIComponent(name)) {
+          return decodeURIComponent(cookieVal);
+      }
+    }
+  }
 }
