@@ -27,13 +27,12 @@ window.addEventListener('DOMContentLoaded', () => {
   document.querySelector(".choice__button").classList.add("disabled");
 
   // Set country value:
-  if (getCookie("country") !== null) {
+  if (countriesArray.indexOf(getCookie("country")) !== -1) {
     document.querySelector("#country").value = getCookie("country");
     if (inputFlag === 0) {
       document.querySelector(".choice__label").classList.add("choice__label--active");
       document.querySelector(".choice__input").classList.add("choice__input--active");
       inputFlag = 1;
-      // console.log("active");
 
       document.querySelector("#verifier").classList.remove("fa-times");
       document.querySelector("#verifier").classList.add("fa-check");
