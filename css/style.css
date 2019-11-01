@@ -187,6 +187,7 @@ body {
 
 .city {
   background-color: rgba(156, 155, 150, 0.151);
+  padding: 10px 5px;
   height: auto;
   width: 90%;
   color: #1bb16d;
@@ -198,7 +199,6 @@ body {
 }
 
 .city__header {
-  margin: 15px 0;
   grid-column: 1;
   grid-row: 1;
   text-align: left;
@@ -225,15 +225,34 @@ body {
 }
 
 .city__information {
-  margin: 15px;
-  margin-top: 30px;
+  width: 100%;
+  margin-top: 5px;
   grid-column: 1/3;
   grid-row: 2;
   font-size: 1.7rem;
-  text-align: justify;
+  text-align: center;
   color: #513b56;
+  position: relative;
 }
 
 .city__information--hidden {
+  display: none;
+}
+
+.city__information .info {
+  text-align: left;
+  font-size: 1.5rem;
+  width: 100%;
+  padding: 10px;
+  color: #513b56;
+}
+
+.city__information .link {
+  color: #513b56;
+  text-decoration: none;
+  text-shadow: 0 0 1px #1bb16d;
+}
+
+.city__information .link--hidden {
   display: none;
 }

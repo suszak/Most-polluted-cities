@@ -165,42 +165,29 @@ function createMainSection(array) {
   
 
   for (let index = 0; index < 10; index++) {
-    const info = document.createElement('p');
-      const link = document.createElement('p');
-      const text = document.createElement('span');
-      const city = document.createElement('span');
-      const header = document.createElement('h3');
-      const button = document.createElement('button');
+    const text = document.createElement('span');
+    const city = document.createElement('span');
+    const header = document.createElement('h3');
+    const button = document.createElement('button');
 
-      city.classList.add("city");
+    city.classList.add("city");
 
-      header.classList.add("city__header");
-      header.innerText = index + 1 + ". " + array[index];
+    header.classList.add("city__header");
+    header.innerText = index + 1 + ". " + array[index];
 
-      info.classList.add("info");
-      link.classList.add("link");
-      text.classList.add("city__information");
-      text.classList.add("city__information--hidden");
-      button.classList.add("city__button");
+    text.classList.add("city__information");
+    text.classList.add("city__information--hidden");
+    text.classList.add("city__information--unloaded");
+    button.classList.add("city__button");
 
-      button.innerText = "i";
-      
-      info.innerText = "Lorem ipsum";
-      link.innerText =  "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id eius, ipsam repellat velit recusandae eaque aliquid autem deleniti voluptates deserunt officia vero exercitationem nostrum, voluptate voluptatibus pariatur nisi quis error.";
+    button.innerText = "i";
 
-      text.appendChild(info);
-      text.appendChild(link);
-      
-      
+    city.appendChild(header);
+    city.appendChild(button);
+    city.appendChild(text);
+    main.appendChild(city);
 
-      city.appendChild(header);
-      city.appendChild(button);
-      city.appendChild(text);
-      main.appendChild(city);
-
-      button.addEventListener("click", (e) => showInfo(e));
-    // Get data from Wikipedia API:
-    // getDataFromWiki(array[index], index, main);
+    button.addEventListener("click", (e) => showInfo(e));
   };
 
   document.querySelector("body").append(main);
@@ -213,11 +200,35 @@ function createMainSection(array) {
 function showInfo(e) {
   const city = e.target.closest(".city");
   const text = city.querySelector(".city__information");
-  text.classList.toggle("city__information--hidden");
+  const cityName = city.querySelector(".city__header").innerText.slice(3);
+  // console.log(cityName);
+
+  if (text === city.querySelector(".city__information--unloaded")) {
+    // console.log("unloaded");
+
+    const info = document.createElement('p');
+    const link = document.createElement('a');
+    info.classList.add("info");
+    link.classList.add("link");
+
+    link.innerText = "More informations";
+
+    getDataFromWiki(cityName, info, link).then(function(response) {
+      text.appendChild(info);
+      text.appendChild(link);
+
+      text.classList.remove("city__information--unloaded");
+      text.classList.toggle("city__information--hidden");
+      return response;
+    });
+  } else {
+    // console.log("nothing to do");
+    text.classList.toggle("city__information--hidden");
+  }
 }
 
 
-async function getDataFromWiki(cityName, index, main) {
+async function getDataFromWiki(cityName, info, link) {
   let url = "https://en.wikipedia.org/w/api.php";
 
   let params = {
@@ -234,7 +245,23 @@ async function getDataFromWiki(cityName, index, main) {
   fetch(url)
     .then(function(response){return response.json();})
     .then(function(response) {
-      console.log(response[1][0]);
+      // console.log(response);
+      if (response[2][0] === "") {
+        info.innerText = "Sorry we cannot find any short information about this city. Please check full version of article here:";  
+      } else if(response[2][0] === undefined && response[3][0] === undefined){
+        info.innerText = "Sorry we cannot find any information about this city."; 
+      } else {
+        info.innerText = response[2][0];
+      }
+      return response;
+    })
+    .then(function(response) {
+      if (response[3][0] === undefined) {
+        link.classList.add("link--hidden");
+      } else {
+        link.href = response[3][0];
+      }
+      return response;
     })
     .catch(function(error){console.log(error);});
 }
