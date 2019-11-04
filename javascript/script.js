@@ -23,8 +23,9 @@ if (windowMinWidth.matches) {
   style.rel = "stylesheet";
   style.href = "css/desktop.css";
   head.appendChild(style);
+
 } else {
-  document.querySelector(".title__img").src = "images/tree.png";
+  document.querySelector(".title__img").src = "images/tree.jpg";
 }
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -241,18 +242,18 @@ function showInfo(e) {
 
 
 async function getDataFromWiki(cityName, info, link) {
-  let url = "https://en.wikipedia.org/w/api.php";
+  let url = `https://en.wikipedia.org/w/api.php?origin=*&action=opensearch&search=${cityName}&limit=1&namespace=0&format=json`;
 
-  let params = {
-    action: "opensearch",
-    search: cityName,
-    limit: "1",
-    namespace: "0",
-    format: "json"
-  };
+  // let params = {
+  //   action: "opensearch",
+  //   search: cityName,
+  //   limit: "1",
+  //   namespace: "0",
+  //   format: "json"
+  // };
 
-  url = url + "?origin=*";
-  Object.keys(params).forEach(function(key){url += "&" + key + "=" + params[key];});
+  // url = url + "?origin=*";
+  // Object.keys(params).forEach(function(key){url += "&" + key + "=" + params[key];});
 
   fetch(url)
     .then(function(response){return response.json();})
