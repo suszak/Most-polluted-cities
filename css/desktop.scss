@@ -1,0 +1,51 @@
+// Desktop style:
+
+@media screen and (min-width: 480px) {
+    body {
+        min-width: 1000px;
+    }
+
+    .title {
+        &__text {
+            margin-top: 100px;
+            margin-left: 50px;
+            font-size: 10rem;
+
+            #nextLine::after {
+                content: '\a';
+                white-space: pre;
+            }
+        }
+
+        &__img {
+            display: none;
+        }
+
+        &__background {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            top: 50%;
+            left: 50%;
+            height: 100%;
+            width: 100%;
+            z-index: -10;
+            display: flex;
+
+            .left {
+                height: 100%;
+                width: 30%;
+                background-color: transparent;
+            }
+
+            .right {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 100%);
+                height: 100%;
+                width: 70%;
+                z-index: -11;
+                background-image: url("../images/df378b3b41b725337b444f86f044909d.jpg");
+                background-position: center;
+                background-size: cover;
+            }
+        }
+    }
+}

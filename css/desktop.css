@@ -1,0 +1,41 @@
+@media screen and (min-width: 480px) {
+  body {
+    min-width: 1000px;
+  }
+  .title__text {
+    margin-top: 100px;
+    margin-left: 50px;
+    font-size: 10rem;
+  }
+  .title__text #nextLine::after {
+    content: '\a';
+    white-space: pre;
+  }
+  .title__img {
+    display: none;
+  }
+  .title__background {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    height: 100%;
+    width: 100%;
+    z-index: -10;
+    display: flex;
+  }
+  .title__background .left {
+    height: 100%;
+    width: 30%;
+    background-color: transparent;
+  }
+  .title__background .right {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 100%);
+    height: 100%;
+    width: 70%;
+    z-index: -11;
+    background-image: url("../images/df378b3b41b725337b444f86f044909d.jpg");
+    background-position: center;
+    background-size: cover;
+  }
+}

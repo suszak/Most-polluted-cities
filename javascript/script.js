@@ -14,6 +14,18 @@ let pollutedCities = [];
 let limit = 50;
 let pollutedCitiesDistinct = [];
 
+// load desktop css:
+const windowMinWidth = window.matchMedia("(min-width: 480px)");
+
+if (windowMinWidth.matches) {
+  const head = document.querySelector('head');
+  const style = document.createElement('link');
+  style.rel = "stylesheet";
+  style.href = "css/desktop.css";
+  head.appendChild(style);
+} else {
+  document.querySelector(".title__img").src = "images/tree.png";
+}
 
 window.addEventListener('DOMContentLoaded', () => {
   // header section events:
