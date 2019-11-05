@@ -1,10 +1,14 @@
-// Desktop style:
+$light: rgb(243, 240, 235);
+$green: rgb(27, 177, 109);
+$darkpurple: rgba(81, 59, 86, 1);
 
+// Desktop style:
 @media screen and (min-width: 480px) {
     body {
         min-width: 1000px;
     }
 
+    // first section - title
     .title {
         &__text {
             margin-top: 100px;
@@ -38,7 +42,7 @@
             }
 
             .right {
-                clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 100%);
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 40% 100%);
                 height: 100%;
                 width: 70%;
                 z-index: -11;
@@ -46,6 +50,71 @@
                 background-position: center;
                 background-size: cover;
             }
+        }
+    }
+
+    // second section - input country
+    .navigation {
+
+        &__header {
+            font-size: 7rem;
+        }
+
+        .choice {
+            &__label {
+                font-size: 3.5rem; 
+
+                &--active {
+                    font-size: 2rem;
+                    transform: translate(-50%, -50%) translate(-160px, -40px);
+                }
+            }
+
+            &__input {
+                width: 400px;
+                height: 60px;
+                font-size: 3.5rem;
+            }
+
+            &__button {
+
+                transition: .2s ease-in-out;
+                height: 50px;
+                border: 2px solid $darkpurple;
+                font-size: 2rem;
+
+                &:hover {
+                    background-color: $darkpurple;
+                    color: $light;
+                }
+
+                
+            }
+
+            .disabled {
+                border-color: grey;
+                background-color: transparent;
+                color: grey;
+                cursor: default;
+            }
+
+            &__verify {
+                left: calc(50% + 250px);
+            }
+        }
+
+        &__background {
+            position: absolute;
+            // translate: transform(-50%, -50%);
+            top: 0;
+            left: 0;
+            clip-path: polygon(0 0, 20% 0, 100% 100%, 0 100%);
+            height: 100%;
+            width: 30%;
+            z-index: -11;
+            background-image: url("../images/countryside-wallpaper-6.jpg");
+            background-position: center;
+            background-size: cover;
         }
     }
 }

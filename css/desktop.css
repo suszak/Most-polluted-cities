@@ -30,11 +30,57 @@
     background-color: transparent;
   }
   .title__background .right {
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 40% 100%);
     height: 100%;
     width: 70%;
     z-index: -11;
     background-image: url("../images/df378b3b41b725337b444f86f044909d.jpg");
+    background-position: center;
+    background-size: cover;
+  }
+  .navigation__header {
+    font-size: 7rem;
+  }
+  .navigation .choice__label {
+    font-size: 3.5rem;
+  }
+  .navigation .choice__label--active {
+    font-size: 2rem;
+    transform: translate(-50%, -50%) translate(-160px, -40px);
+  }
+  .navigation .choice__input {
+    width: 400px;
+    height: 60px;
+    font-size: 3.5rem;
+  }
+  .navigation .choice__button {
+    transition: .2s ease-in-out;
+    height: 50px;
+    border: 2px solid #513b56;
+    font-size: 2rem;
+  }
+  .navigation .choice__button:hover {
+    background-color: #513b56;
+    color: #f3f0eb;
+  }
+  .navigation .choice .disabled {
+    border-color: grey;
+    background-color: transparent;
+    color: grey;
+    cursor: default;
+  }
+  .navigation .choice__verify {
+    left: calc(50% + 250px);
+  }
+  .navigation__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    clip-path: polygon(0 0, 20% 0, 100% 100%, 0 100%);
+    height: 100%;
+    width: 30%;
+    z-index: -11;
+    background-image: url("../images/countryside-wallpaper-6.jpg");
     background-position: center;
     background-size: cover;
   }
