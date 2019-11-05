@@ -13,7 +13,7 @@
 
 body {
   width: 100vw;
-  background-color: #f3f0eb;
+  background-color: #e6e3df;
   overflow-x: hidden;
 }
 
@@ -187,7 +187,7 @@ body {
 
 .city {
   background-color: rgba(156, 155, 150, 0.151);
-  padding: 10px 5px;
+  padding: 20px 5px;
   height: auto;
   width: 90%;
   color: #1bb16d;

@@ -1,4 +1,4 @@
-$light: rgb(243, 240, 235);
+$light: rgb(230, 227, 223);
 $green: rgb(27, 177, 109);
 $darkpurple: rgba(81, 59, 86, 1);
 $fullscreen: calc(var(--vh, 1vh) * 100);
@@ -203,7 +203,7 @@ body {
 
 .city {
     background-color: rgba(156, 155, 150, 0.151);
-    padding: 10px 5px;
+    padding: 20px 5px;
     height: auto;
     width: 90%;
     color: $green;

@@ -1,4 +1,4 @@
-$light: rgb(243, 240, 235);
+$light: rgb(230, 227, 223);
 $green: rgb(27, 177, 109);
 $darkpurple: rgba(81, 59, 86, 1);
 
@@ -105,7 +105,6 @@ $darkpurple: rgba(81, 59, 86, 1);
 
         &__background {
             position: absolute;
-            // translate: transform(-50%, -50%);
             top: 0;
             left: 0;
             clip-path: polygon(0 0, 20% 0, 100% 100%, 0 100%);
@@ -115,6 +114,47 @@ $darkpurple: rgba(81, 59, 86, 1);
             background-image: url("../images/countryside-wallpaper-6.jpg");
             background-position: center;
             background-size: cover;
+        }
+    }
+
+    // main section (informations about cities)
+    .cities {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        row-gap: 50px;
+        padding: 50px 15px;
+        justify-content: center;
+
+
+        .city {
+            margin: 0 auto;
+            min-height: 100px;
+
+            &__header {
+                // margin-top: 15px;
+                // margin-bottom: 15px;
+                font-size: 3rem;
+            }
+
+            &:nth-child(odd) {
+                grid-column: 1/3;
+            }
+
+            &:nth-child(even) {
+                grid-column: 2/4;
+            }
+
+            &__information {
+                font-size: 2rem;
+
+                .info {
+                    font-size: 2rem;
+                }
+
+                .link {
+                    margin-bottom: 15px;
+                }
+            }
         }
     }
 }
