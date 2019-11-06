@@ -148,6 +148,10 @@ $darkpurple: rgba(81, 59, 86, 1);
                     font-size: 2rem;
                 }
             }
+
+            &__button {
+                cursor: pointer;
+            }
         }
     }
 }
