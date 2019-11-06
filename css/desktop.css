@@ -6,6 +6,7 @@
     margin-top: 100px;
     margin-left: 50px;
     font-size: 10rem;
+    text-shadow: 0 0 2px #e6e3df;
   }
   .title__text #nextLine::after {
     content: '\a';
