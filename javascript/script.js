@@ -219,17 +219,11 @@ function showInfo(e) {
   if (text === city.querySelector(".city__information--unloaded")) {
     // console.log("unloaded");
 
-    const span = document.createElement('span');
     const info = document.createElement('p');
-    const link = document.createElement('a');
     info.classList.add("info");
-    link.classList.add("link");
 
-    getDataFromWiki(cityName, info, link).then(function(response) {
-      span.append(info);
-      span.append(link);
-      text.appendChild(span);
-      // text.appendChild(link);
+    getDataFromWiki(cityName, info).then(function(response) {
+      text.appendChild(info);
       return response;
     }).then(function(response) {
       text.classList.remove("city__information--unloaded");
@@ -243,16 +237,8 @@ function showInfo(e) {
 }
 
 
-async function getDataFromWiki(cityName, info, link) {
-  let url = `https://en.wikipedia.org/w/api.php?origin=*&action=opensearch&search=${cityName}&limit=1&namespace=0&format=json`;
-  // // let imgUrl = `https://en.wikipedia.org/w/api.php?origin=*&format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=${cityName}`;
-
-  // fetch(url).then(function(response) {
-  //   return response.json();
-  // }).then(function(response) {
-  //   // console.log(response.query.pages[90580].extract);
-  //   console.log(response)
-  // })
+async function getDataFromWiki(cityName, info) {
+  let url = `https://en.wikipedia.org/w/api.php?origin=*&format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=${cityName}`;
 
   fetch(url)
     .then(function(response){
@@ -260,21 +246,18 @@ async function getDataFromWiki(cityName, info, link) {
     })
     .then(function(response) {
       // console.log(response);
-      if (response[2][0] === "") {
-        info.innerText = "Sorry we cannot find any short information about this city. Please check full version of article here:";  
-      } else if(response[2][0] === undefined && response[3][0] === undefined){
-        info.innerText = "Sorry we cannot find any information about this city."; 
-      } else {
-        info.innerText = response[2][0];
-      }
-      return response;
-    })
-    .then(function(response) {
-      if (response[3][0] === undefined) {
-        link.classList.add("link--hidden");
-      } else {
-        link.innerText = "More informations";
-        link.href = response[3][0];
+
+      for (const key in response.query.pages) {
+        if (response.query.pages.hasOwnProperty(key)) {
+          const element = response.query.pages[key];
+          // console.log(element.extract);
+
+          if (element.extract === undefined) {
+            info.innerText = "Sorry we cannot find any information about this city.";  
+          } else {
+            info.innerText = element.extract;
+          }
+        }
       }
       return response;
     })

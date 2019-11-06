@@ -245,14 +245,6 @@ body {
   width: 100%;
   padding: 10px;
   color: #513b56;
-}
-
-.city__information .link {
-  color: #513b56;
-  text-decoration: none;
-  text-shadow: 0 0 1px #1bb16d;
-}
-
-.city__information .link--hidden {
-  display: none;
+  max-height: 400px;
+  overflow-y: auto;
 }
