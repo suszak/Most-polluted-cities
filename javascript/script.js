@@ -23,11 +23,11 @@ if (windowMinWidth.matches) {
   style.rel = "stylesheet";
   style.href = "css/desktop.css";
   head.appendChild(style);
-
 } else {
   document.querySelector(".title__img").src = "images/tree.jpg";
 }
 
+// After DOM load
 window.addEventListener('DOMContentLoaded', () => {
   // header section events:
   document.querySelector("#goNav").addEventListener("click", () => {
@@ -78,12 +78,10 @@ window.addEventListener('DOMContentLoaded', () => {
       document.querySelector(".choice__button").disabled = true;
       document.querySelector(".choice__button").classList.add("disabled");
     }
-
   });
 
   // nav: input disabling:
   document.addEventListener("click", (e) => {
-
     if (inputFlag === 1 && document.querySelector("#country").value === "" && e.target.id !== "country") {
       document.querySelector(".choice__label").classList.remove("choice__label--active");
       document.querySelector(".choice__input").classList.remove("choice__input--active");
@@ -210,6 +208,7 @@ function createMainSection(array) {
   document.querySelector(".choice__button").disabled = false;
 }
 
+// Show information about cities
 function showInfo(e) {
   const city = e.target.closest(".city");
   const text = city.querySelector(".city__information");
@@ -236,7 +235,7 @@ function showInfo(e) {
   }
 }
 
-
+// Get data from wikipedia API
 async function getDataFromWiki(cityName, info) {
   let url = `https://en.wikipedia.org/w/api.php?origin=*&format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=${cityName}`;
 
@@ -267,7 +266,7 @@ async function getDataFromWiki(cityName, info) {
 }
 
 
-// create cookie (remember input value):
+// Create cookie (remembers input value):
 function createCookie(countryName) {
   if (navigator.cookieEnabled) {
     let data = new Date();
@@ -278,7 +277,7 @@ function createCookie(countryName) {
   }
 }
 
-// get cookie value:
+// Get cookie value:
 function getCookie(name) {
   if (document.cookie !== "") {
     const cookies = document.cookie.split(/; */);
