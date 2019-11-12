@@ -66,7 +66,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // nav: verifier change:
   document.querySelector("#country").addEventListener("keyup", (e) => {
-
     if (countriesArray.indexOf(document.querySelector("#country").value) !== -1) {
       document.querySelector("#verifier").classList.remove("fa-times");
       document.querySelector("#verifier").classList.add("fa-check");
@@ -77,6 +76,15 @@ window.addEventListener('DOMContentLoaded', () => {
       document.querySelector("#verifier").classList.remove("fa-check");
       document.querySelector(".choice__button").disabled = true;
       document.querySelector(".choice__button").classList.add("disabled");
+    }
+
+    // show cities on enter
+    if((e.key === "Enter") && (document.querySelector(".choice__button").disabled === false)){
+      // get data from openaq API:
+      getPollutedCities();
+      document.querySelector(".choice__button").innerText = "Loading...";
+      document.querySelector(".choice__button").disabled = true;
+      createCookie(document.querySelector("#country").value);
     }
   });
 
