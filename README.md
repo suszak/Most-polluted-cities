@@ -18,7 +18,7 @@ Project is created with:
 ## How to run
 To run this project, use npm:
 
-* Download this repositorium from master
+* Download this app from master branch
 * Open cmd in downloaded directory
 * Type in cmd:
 
