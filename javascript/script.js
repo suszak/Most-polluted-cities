@@ -15,17 +15,10 @@ let limit = 50;
 let pollutedCitiesDistinct = [];
 
 // load desktop css:
-const windowMinWidth = window.matchMedia("(min-width: 480px)");
+chooseCSS();
+window.addEventListener("resize", chooseCSS);
 
-if (windowMinWidth.matches) {
-  const head = document.querySelector('head');
-  const style = document.createElement('link');
-  style.rel = "stylesheet";
-  style.href = "css/desktop.css";
-  head.appendChild(style);
-} else {
-  document.querySelector(".title__img").src = "images/tree.jpg";
-}
+
 
 // After DOM load
 window.addEventListener('DOMContentLoaded', () => {
@@ -297,5 +290,29 @@ function getCookie(name) {
           return decodeURIComponent(cookieVal);
       }
     }
+  }
+}
+
+// Choose css styles:
+function chooseCSS() {
+  const windowMinWidth = window.matchMedia("(min-width: 830px)");
+  const head = document.querySelector('head');
+
+  if (windowMinWidth.matches) {  
+    if(head.querySelector(".desktopStyle") === null) {
+      console.log("desktop");
+      const style = document.createElement('link');
+      style.classList.add("desktopStyle");
+      style.rel = "stylesheet";
+      style.href = "css/desktop.css";
+      head.appendChild(style);
+    }
+  } else {
+    console.log(head.querySelector(".desktopStyle"));
+    if(head.querySelector(".desktopStyle") !== null) {
+      const element = head.querySelector(".desktopStyle");
+      element.parentNode.removeChild(element);
+    }
+    document.querySelector(".title__img").src = "images/tree.jpg";
   }
 }

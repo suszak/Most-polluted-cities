@@ -3,12 +3,11 @@ $green: rgb(27, 177, 109);
 $darkpurple: rgba(81, 59, 86, 1);
 
 // Desktop style:
-@media screen and (min-width: 480px) {
+@media screen and (min-width: 830px) {
     body {
-        min-width: 1000px;
+        min-width: 830px;
     }
 
-    // first section - title
     .title {
         &__text {
             margin-top: 100px;
@@ -139,6 +138,18 @@ $darkpurple: rgba(81, 59, 86, 1);
 
             &:nth-child(even) {
                 grid-column: 2/4;
+            }
+
+            @media screen and (max-width: 1000px) {
+                &:nth-child(odd) {
+                    grid-column: 1/4;
+                    width: 75%;
+                }
+    
+                &:nth-child(even) {
+                    grid-column: 1/4;
+                    width: 75%;
+                }
             }
 
             &__information {
