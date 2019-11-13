@@ -2,6 +2,7 @@
 ## Table of contents
 * [General info](#general-info)
 * [Technologies](#technologies)
+* [Used API](#used-api)
 * [How to run locally](#how-to-run)
 
 ## General info
@@ -13,7 +14,11 @@ In the next part we can read some inforamtions about these cities (informations 
 Project is created with:
 * HTML5
 * CSS/SCSS
-* JS ES6
+* JavaScript ES6
+
+## Used API
+* [OpenAQ](https://docs.openaq.org)
+* [WikipediaAPI](https://www.mediawiki.org/wiki/API:Main_page/en)
 
 ## How to run
 To run this project, use npm:
