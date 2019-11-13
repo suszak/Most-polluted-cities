@@ -300,7 +300,7 @@ function chooseCSS() {
 
   if (windowMinWidth.matches) {  
     if(head.querySelector(".desktopStyle") === null) {
-      console.log("desktop");
+      // console.log("desktop");
       const style = document.createElement('link');
       style.classList.add("desktopStyle");
       style.rel = "stylesheet";
@@ -308,7 +308,7 @@ function chooseCSS() {
       head.appendChild(style);
     }
   } else {
-    console.log(head.querySelector(".desktopStyle"));
+    // console.log(head.querySelector(".desktopStyle"));
     if(head.querySelector(".desktopStyle") !== null) {
       const element = head.querySelector(".desktopStyle");
       element.parentNode.removeChild(element);

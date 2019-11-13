@@ -4,9 +4,6 @@ $darkpurple: rgba(81, 59, 86, 1);
 
 // Desktop style:
 @media screen and (min-width: 830px) {
-    body {
-        min-width: 830px;
-    }
 
     .title {
         &__text {
@@ -14,11 +11,6 @@ $darkpurple: rgba(81, 59, 86, 1);
             margin-left: 50px;
             font-size: 10rem;
             text-shadow: 0 0 2px $light;
-
-            #nextLine::after {
-                content: '\a';
-                white-space: pre;
-            }
         }
 
         &__img {
@@ -138,18 +130,6 @@ $darkpurple: rgba(81, 59, 86, 1);
 
             &:nth-child(even) {
                 grid-column: 2/4;
-            }
-
-            @media screen and (max-width: 1000px) {
-                &:nth-child(odd) {
-                    grid-column: 1/4;
-                    width: 75%;
-                }
-    
-                &:nth-child(even) {
-                    grid-column: 1/4;
-                    width: 75%;
-                }
             }
 
             &__information {

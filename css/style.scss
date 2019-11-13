@@ -9,6 +9,10 @@ $fullscreen: calc(var(--vh, 1vh) * 100);
     font-family: 'PT Sans', sans-serif;
 }
 
+// @media screen and (min-width: 480px) {
+
+// }
+
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -37,6 +41,11 @@ body {
         margin-left: 25px;
         color: $green;
         z-index: 1;
+
+        #nextLine::after {
+            content: '\a';
+            white-space: pre;
+        }
 
         @media screen and (max-height: 600px) {
             margin-top: 10px;
@@ -260,5 +269,15 @@ body {
             max-height: 400px;
             overflow-y: auto;
         }
+    }
+}
+
+@media screen and (min-width: 530px) {
+    .title__text {
+        font-size: 8rem;
+    }
+
+    .navigation__header {
+        font-size: 5rem;
     }
 }

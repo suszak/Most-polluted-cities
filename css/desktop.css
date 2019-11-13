@@ -1,16 +1,9 @@
 @media screen and (min-width: 830px) {
-  body {
-    min-width: 830px;
-  }
   .title__text {
     margin-top: 100px;
     margin-left: 50px;
     font-size: 10rem;
     text-shadow: 0 0 2px #e6e3df;
-  }
-  .title__text #nextLine::after {
-    content: '\a';
-    white-space: pre;
   }
   .title__img {
     display: none;
@@ -105,20 +98,6 @@
   .cities .city:nth-child(even) {
     grid-column: 2/4;
   }
-}
-
-@media screen and (min-width: 830px) and (max-width: 1000px) {
-  .cities .city:nth-child(odd) {
-    grid-column: 1/4;
-    width: 75%;
-  }
-  .cities .city:nth-child(even) {
-    grid-column: 1/4;
-    width: 75%;
-  }
-}
-
-@media screen and (min-width: 830px) {
   .cities .city__information {
     font-size: 2rem;
   }
