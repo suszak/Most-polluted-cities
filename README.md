@@ -6,9 +6,8 @@
 * [How to run locally](#how-to-run)
 
 ## General info
-It is an application created as a SkyGate recruitment task.
 This website get 10 most polluted cities in chosen country (only Poland, Germany, Spain and France avaliable) from openaq api.
-In the next part we can read some inforamtions about these cities (informations are downloaded from wikipedia api).
+In the next part we can read some informations about these cities (informations are downloaded from wikipedia api).
 
 ## Technologies
 Project is created with:
