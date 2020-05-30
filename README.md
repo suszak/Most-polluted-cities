@@ -1,4 +1,6 @@
 # Most polluted cities
+live version: [https://suszak.github.io/Most-polluted-cities/](https://suszak.github.io/Most-polluted-cities/)
+
 ## Table of contents
 * [General info](#general-info)
 * [Technologies](#technologies)
